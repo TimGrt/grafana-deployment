@@ -1,0 +1,40 @@
+---
+
+# These tasks changes the theme of Grafana and the HTTP port 
+# A handler is called as changes to the config require a Service restart
+
+- name: Change theme to {{ grafana_theme }}
+  community.general.ini_file:
+    path: /etc/grafana/grafana.ini
+    section: users
+    option: default_theme
+    value: "{{ grafana_theme }}"
+  become: true
+  notify: restart grafana
+
+- name: Change port to {{ grafana_port }}
+  community.general.ini_file:
+    path: /etc/grafana/grafana.ini
+    section: server
+    option: http_port
+    value: "{{ grafana_port }}"
+  become: true
+  notify: restart grafana
+
+# For demonstration purposes, same tasks achieved with different module
+
+# - name: Change theme to {{ grafana_theme }}
+#   ansible.builtin.lineinfile:
+#     path: /etc/grafana/grafana.ini
+#     regexp: '.*default_theme ='
+#     line: "default_theme = {{ grafana_theme }}"
+#   become: yes
+#   notify: restart grafana
+
+# - name: Change port to {{ grafana_port }}
+#   ansible.builtin.lineinfile:
+#     path: /etc/grafana/grafana.ini
+#     regexp: '.*http_port ='
+#     line: "http_port = {{ grafana_port }}"
+#   become: yes
+#   notify: restart grafana

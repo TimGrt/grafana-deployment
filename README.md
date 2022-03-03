@@ -1,2 +1,2 @@
-# grafana-deployment
-Simple Grafana deployment for Workshops, intended to run in RedHat Demo environment
+ansible-galaxy collection install community.general
+ansible-galaxy collection install community.grafana

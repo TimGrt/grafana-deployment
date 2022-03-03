@@ -1,0 +1,32 @@
+---
+
+- name: Install/update Grafana Github datasource plugin
+  community.grafana.grafana_plugin:
+    name: grafana-github-datasource
+    version: latest
+    state: present
+  become: true
+
+# - name: Get Grafana Github plugin source
+#   ansible.builtin.get_url:
+#     url: https://grafana.com/api/plugins/grafana-github-datasource/versions/1.0.13/download?os=linux&arch=amd64
+#     dest: /tmp
+
+# - name: Install unzip utility
+#   ansible.builtin.yum:
+#     name: unzip
+#     state: present
+#   become: true
+
+# - name: Ensure Grafana plugins directory exists
+#   ansible.builtin.file:
+#     path: /var/lib/grafana/plugins
+#     state: directory
+#   become: true
+
+# - name: Extract plugin archive to /var/lib/grafana/plugins
+#   ansible.builtin.unarchive:
+#     src: /tmp/grafana-github-datasource-1.0.13.linux_amd64.zip
+#     dest: /var/lib/grafana/plugins
+#     remote_src: true
+#   become: true

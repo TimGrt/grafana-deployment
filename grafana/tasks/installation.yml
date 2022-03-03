@@ -1,0 +1,23 @@
+---
+
+# This task adds the Grafana repo, the repo config file is located in the 'files' folder of its role
+- name: Add Grafana Yum repository
+  ansible.builtin.copy:
+    src: grafana.repo
+    dest: /etc/yum.repos.d/grafana.repo
+  become: true
+
+- name: Install Grafana
+  ansible.builtin.yum:
+    name: grafana
+    state: present
+  become: true
+
+# This task starts the Service and enables the Service to be loaded at boot
+- name: Start Grafana
+  ansible.builtin.systemd:
+    name: grafana-server
+    daemon_reload: true
+    state: started
+    enabled: true
+  become: true

@@ -1,0 +1,7 @@
+---
+
+grafana_theme: "light"
+
+grafana_port: 8080
+
+grafana_protocol: "http"

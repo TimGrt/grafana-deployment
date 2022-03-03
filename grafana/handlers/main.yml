@@ -1,0 +1,9 @@
+---
+
+# This handler is called in the configuration.yml, it restarts the grafana-server instance
+
+- name: restart grafana
+  systemd:
+    name: grafana-server
+    state: restarted
+  become: yes
